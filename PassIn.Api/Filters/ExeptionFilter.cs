@@ -33,6 +33,11 @@ public class ExeptionFilter : IExceptionFilter
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest; //cast enum para int
             context.Result = new BadRequestObjectResult(context.Exception.Message);
         }
+        else if (context.Exception is ConflictExeption)
+        {
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Conflict; //cast enum para int
+            context.Result = new ConflictObjectResult(context.Exception.Message);
+        }
     }    
 
     private void ThrowUnknownError(ExceptionContext context)

@@ -8,7 +8,7 @@ public class RegisterEventUseCase
 {
     // Regras de negocio para registrar evento
 
-    public ResponseRegisterJsonEventJson Execute(RequestEventJson request) // recebe como parametro o request
+    public ResponseRegisterJson Execute(RequestEventJson request) // recebe como parametro o request
     {
         Validate(request);
 
@@ -24,7 +24,7 @@ public class RegisterEventUseCase
         dbContext.Events.Add(entity);
         dbContext.SaveChanges();
 
-        return new ResponseRegisterJsonEventJson
+        return new ResponseRegisterJson
         {
             Id = entity.Id
         };
