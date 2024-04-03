@@ -34,16 +34,16 @@ public class RegisterEventUseCase
     {
         if(request.MaximumAttendees <= 0)
         {
-            throw new PassInException("The maximum attendees is invalid"); // mensagem enviada pelo ex.Message
+            throw new ErrorOnValidationException("The maximum attendees is invalid"); // mensagem enviada pelo ex.Message
         }
 
         if (string.IsNullOrWhiteSpace(request.Title)){
-            throw new PassInException("The title is invalid");
+            throw new ErrorOnValidationException("The title is invalid");
         }
 
         if (string.IsNullOrWhiteSpace(request.Details))
         {
-            throw new PassInException("The details is invalid");
+            throw new ErrorOnValidationException("The details is invalid");
         }
     }
 }
