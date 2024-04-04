@@ -11,6 +11,6 @@ public class PassInDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // linca com o banco de dados
     {
-        optionsBuilder.UseSqlite("Data Source=C:\\Users\\emanu\\Downloads\\PassInDb.db"); //caminho para o banco
+        optionsBuilder.UseSqlite("Data Source=D:\\git-projetos-pessoais\\nlw-unite\\PassInDb.db"); //caminho para o banco
     }
 }
