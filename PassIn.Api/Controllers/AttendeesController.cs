@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PassIn.Application.UseCases.Attendees.GetAllByEventsId;
 using PassIn.Application.UseCases.Events.RegisterAttendee;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
@@ -20,6 +21,19 @@ public class AttendeesController : ControllerBase
         var useCase = new RegisterAttendeeOnEventUseCase();
         var response = useCase.Execute(eventId, request);
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [Route("{eventId}")]
+    [ProducesResponseType(typeof(ResponseAllAttendeesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseAllAttendeesJson), StatusCodes.Status404NotFound)]
+    public IActionResult GetAll([FromRoute] Guid eventId)
+    {
+        var useCase = new GetAllAttendeesByEventUseCase();
+
+        var response = useCase.Execute(eventId);
+
+        return Ok(response);
     }
 
 }
