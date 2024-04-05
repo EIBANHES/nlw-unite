@@ -9,4 +9,6 @@ public class Event
 
     public int Maximum_Attendees { get; set; }
 
+    public string teste {  get; set; } = string.Empty;
+
 }
