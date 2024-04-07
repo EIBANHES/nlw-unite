@@ -8,6 +8,7 @@ public class PassInDbContext : DbContext
 
     public DbSet<Event> Events { get; set; } // representa tabela de eventos
     public DbSet<Attendee> Attendees { get; set; } // representa tabela de participantes
+    public DbSet<CheckIn> CheckIns { get; set; } // representa tabela de checkins
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // linca com o banco de dados
     {

@@ -15,7 +15,7 @@ public class GetAllAttendeesByEventUseCase
     }
     public ResponseAllAttendeesJson Execute(Guid eventId)
     {
-        var attendees = _dbContext.Events.Include(ev => ev.Attendees).FirstOrDefault(ev => ev.Id == eventId);
+        var attendees = _dbContext.Events.Include(ev => ev.Attendees).ThenInclude(attendee => attendee.CheckIn).FirstOrDefault(ev => ev.Id == eventId);
         if (attendees is null)
             throw new NotFoundException("An event with this id dont exist.");
 
@@ -26,7 +26,8 @@ public class GetAllAttendeesByEventUseCase
                 Id = attendee.Id,
                 Name = attendee.Name,
                 Email = attendee.Email,
-                CreatedAt = attendee.Created_At
+                CreatedAt = attendee.Created_At,
+                CheckedInAt = attendee.CheckIn?.Created_at
             }).ToList()
         };
     }
